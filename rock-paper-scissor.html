@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Rock Paper Scissor</title>
+
+<style>
+
+.image-settings{
+    height:50px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<button onclick="
+your_choice='rock';
+
+computer_move();
+
+if(computer=='rock'){
+    score.tie++;
+}
+else if(computer=='paper'){
+    score.lose++;
+}
+else{
+    score.win++;
+}
+
+display_choice();
+savescore();
+
+">
+
+<img class="image-settings"
+src="https://media.geeksforgeeks.org/wp-content/uploads/20210705223618/default.jpeg">
+
+</button>
+
+
+
+
+
+<button onclick="
+your_choice='paper';
+
+computer_move();
+
+if(computer=='scissor'){
+    score.lose++;
+}
+else if(computer=='paper'){
+    score.tie++;
+}
+else{
+    score.win++;
+}
+
+display_choice();
+savescore();
+
+">
+
+<img class="image-settings"
+src="https://media.geeksforgeeks.org/wp-content/uploads/20210705223645/paper.jpeg">
+
+</button>
+
+
+
+
+
+<button onclick="
+your_choice='scissor';
+
+computer_move();
+
+if(computer=='rock'){
+    score.lose++;
+}
+else if(computer=='scissor'){
+    score.tie++;
+}
+else{
+    score.win++;
+}
+
+display_choice();
+savescore();
+
+">
+
+<img class="image-settings"
+src="https://media.geeksforgeeks.org/wp-content/uploads/20210705223721/scissor.jpeg">
+
+</button>
+
+
+
+
+
+
+<button onclick="
+
+score.win=0;
+score.lose=0;
+score.tie=0;
+
+localStorage.removeItem('score');
+
+savescore();
+
+
+document.getElementById('your-choice').innerHTML='';
+document.getElementById('computer-choice').innerHTML='';
+
+">
+
+Reset
+
+</button>
+
+
+
+
+
+<h3>
+Your choice:
+<span id="your-choice"></span>
+</h3>
+
+
+
+<h3>
+Computer choice:
+<span id="computer-choice"></span>
+<p>hii</p>
+</h3>
+
+
+
+
+
+<p>Wins:</p>
+<button id="wins"></button>
+
+
+<p>Losses:</p>
+<button id="losses"></button>
+
+
+<p>Ties:</p>
+<button id="ties"></button>
+
+
+
+
+
+
+<script>
+
+
+const images = {
+
+rock:
+"https://media.geeksforgeeks.org/wp-content/uploads/20210705223618/default.jpeg",
+
+paper:
+"https://media.geeksforgeeks.org/wp-content/uploads/20210705223645/paper.jpeg",
+
+scissor:
+"https://media.geeksforgeeks.org/wp-content/uploads/20210705223721/scissor.jpeg"
+
+};
+
+
+
+
+
+const score = JSON.parse(localStorage.getItem('score')) || {
+
+win:0,
+lose:0,
+tie:0
+
+};
+
+
+
+
+
+let computer='';
+
+let your_choice='';
+
+
+
+
+
+
+function computer_move(){
+
+
+let num=Math.random();
+
+
+
+if(num>=0 && num<1/3){
+
+computer='rock';
+
+}
+
+else if(num>=1/3 && num<2/3){
+
+computer='paper';
+
+}
+
+else{
+
+computer='scissor';
+
+}
+
+
+}
+
+
+
+
+
+
+
+function display_choice(){
+
+
+document.getElementById('your-choice').innerHTML =
+
+`
+<img class="image-settings" src="${images[your_choice]}">
+`;
+
+
+
+document.getElementById('computer-choice').innerHTML =
+
+`
+<img class="image-settings" src="${images[computer]}">
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+function savescore(){
+
+
+
+document.getElementById('wins').innerHTML =
+score.win;
+
+
+
+document.getElementById('losses').innerHTML =
+score.lose;
+
+
+
+document.getElementById('ties').innerHTML =
+score.tie;
+
+
+
+localStorage.setItem(
+'score',
+JSON.stringify(score)
+);
+
+
+
+}
+
+
+
+
+
+savescore();
+
+
+
+</script>
+
+
+</body>
+
+</html>
