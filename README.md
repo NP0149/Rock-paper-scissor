@@ -30,4 +30,40 @@ The game allows the user to choose rock, paper, or scissor. The computer randoml
 
 ---
 
-## 📂 Project Structure
+## 🎮 How to Play
+
+1. Open `index.html` in your browser.
+2. Click on any option:
+   - Rock
+   - Paper
+   - Scissor
+3. The computer will randomly choose its option.
+4. The result will be calculated:
+   
+### Rules
+
+| User | Computer | Result |
+|---|---|---|
+| Rock | Rock | Tie |
+| Rock | Paper | Lose |
+| Rock | Scissor | Win |
+| Paper | Rock | Win |
+| Paper | Paper | Tie |
+| Paper | Scissor | Lose |
+| Scissor | Rock | Lose |
+| Scissor | Paper | Win |
+| Scissor | Scissor | Tie |
+
+---
+
+## 💾 Local Storage
+
+The game stores the score in browser local storage.
+
+Example:
+
+```javascript
+localStorage.setItem(
+    'score',
+    JSON.stringify(score)
+);
